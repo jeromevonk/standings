@@ -1,3 +1,3 @@
 # standings
 
-Tabela de campeonato
+Tabela de campeonato COMPLETA

@@ -52,7 +52,7 @@ function descendingComparator(a, b, orderBy) {
     y = Number(b[orderBy]);
   }
 
-  console.log(orderBy)
+  console.log(orderBy);
   // TODO if points, ordenar por pontos, vitorias, saldo de gols, etc
 
   if (y < x) {

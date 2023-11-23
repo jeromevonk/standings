@@ -4,7 +4,8 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import LinearProgress from '@mui/material/LinearProgress';
 import StandingsTable from '../components/StandingsTable';
-import { standingsService, alertService } from 'src/services';
+import OptionPicker from '../components/OptionPicker';
+import { matchesService, standingsService, alertService } from 'src/services';
 import { withRouter } from 'next/router'
 import { AppContext } from 'src/pages/_app';
 
@@ -14,21 +15,32 @@ function Index(props) {
   const largeScreen = context?.largeScreen;
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const [standings, setStandings] = React.useState({});
+  const [matches, setMatches] = React.useState({});
+  const [standings, setStandings] = React.useState([]);
+  const [selectedOption, setSelectedOption] = React.useState("Atualizada");
+  const [selectedSubOption, setSelectedSubOption] = React.useState("Atualizada");
 
+  const handleChange = (name, value) => {
+
+    if (name === 'option') {
+      setSelectedOption(value)
+    } else {
+      setSelectedSubOption(value)
+    }
+  };
 
   // -----------------------------------------------------
-  // Get standings via API
+  // Get matches via API
   // -----------------------------------------------------
   React.useEffect(() => {
     let isSubscribed = true;
     setIsLoading(true);
 
     // Make request
-    standingsService.getStandings()
+    matchesService.getMatches()
       .then(payload => {
         if (isSubscribed) {
-          setStandings(payload)
+          setMatches(payload)
         }
         setIsLoading(false);
       })
@@ -39,12 +51,19 @@ function Index(props) {
     }
   }, []);
 
-  {
-    console.log(standings)
-  }
+  // -----------------------------------------------------
+  // Get standings
+  // -----------------------------------------------------
+  React.useEffect(() => {
+    setIsLoading(true);
+    setStandings(standingsService.getStandings(matches, selectedOption, selectedSubOption))
+    setIsLoading(false);
+  }, [matches, selectedOption, selectedSubOption]);
+
+  // console.log(standings);
 
   return (
-    <Container 
+    <Container
       maxWidth="xl"
       sx={{ paddingLeft: '12px', paddingRight: '12px' }}
     >
@@ -59,10 +78,19 @@ function Index(props) {
                 </Box>
               ) :
               (
-                <StandingsTable
-                  title="Brasileirao"
-                  // data={standings} // TODOOOOOOOOOOOOOOOOOO
-                />
+                <Stack spacing={1}>
+                  <OptionPicker
+                    selectedOption={selectedOption}
+                    selectedSubOption={selectedSubOption}
+                    handleChange={handleChange}
+                  />
+                  <StandingsTable
+                    title="Brasileirao"
+                    selectedOption={selectedOption}
+                    selectedSubOption={selectedSubOption}
+                    data={standings}
+                  />
+                </Stack>
               )
           }
         </Stack>

@@ -21,7 +21,6 @@ function Index(props) {
   const [selectedSubOption, setSelectedSubOption] = React.useState("Atualizada");
 
   const handleChange = (name, value) => {
-
     if (name === 'option') {
       setSelectedOption(value)
     } else {

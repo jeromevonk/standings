@@ -2,17 +2,8 @@ export const standingsService = {
   getStandings,
 };
 
-const calculateMatch = (standings, match) => {
-  const { homeTeam, awayTeam, homeScore, awayScore, started } = match;
-
-  if (started) {
-    // The home team
-    calculateStandings(standings[homeTeam], homeScore, awayScore)
-    
-    // The away team
-    calculateStandings(standings[awayTeam], awayScore, homeScore)
-  }
-}
+const ITERATE_BY_ROUNDS = [1, 2, 3, 4, 5, 7, 8];
+const ITERATE_BY_TEAM = [6];
 
 function getStandings(matches, option, subOption) {
   const standings = {
@@ -40,15 +31,80 @@ function getStandings(matches, option, subOption) {
 
   if (Object.keys(matches).length !== 0) {
 
-    for (let i = 1; i <= 38; i++) {
-      const round = matches[i];
-      
-      for (const match of round) {
-        calculateMatch(standings, match)
-      }
+    if (ITERATE_BY_ROUNDS.includes(option)) {
+      iterateByRounds(standings, matches, option, subOption);
+    } else if (ITERATE_BY_TEAM) {
+      iterateByTeam(standings, matches, option, subOption);
     }
   }
 
+  // Convert 
+  return convertStandingsToArray(standings);
+}
+
+// -----------------------------------------------
+// Iterate by round in crescent order
+// -----------------------------------------------
+function iterateByRounds(standings, matches, option, subOption) {
+  const details = {
+    startRound: 1,
+    endRound: 38,
+    calculateHome: true,
+    calculateAway: true,
+  }
+
+  switch (option) {
+    case 1:
+      // No changes
+      break;
+
+    case 2:
+      details.calculateAway = false;
+      break;
+
+    case 3:
+      details.calculateHome = false;
+      break;
+
+    case 4:
+      details.endRound = 19
+      break;
+
+    case 5:
+      details.startRound = 20;
+      details.endRound = 38
+      break;
+
+    case 7:
+      details.endRound = 26 // TODO
+      break;
+
+    case 8:
+      details.dateLimit = "2023-05-05" // TODO
+      break;
+  }
+
+  for (let i = details.startRound; i <= details.endRound; i++) {
+    const round = matches[i];
+
+    for (const match of round) {
+      calculateMatch(standings, match, details.calculateHome, details.calculateAway, details.dateLimit)
+    }
+  }
+}
+
+// -----------------------------------------------
+// Iterate by team
+// -----------------------------------------------
+function iterateByTeam(standings, matches, option, subOption) {
+  const sortedMatches = getMatchesInDescendingOrder(matches);
+  // console.log(sortedMatches[0]);
+}
+
+// -----------------------------------------------
+// Util
+// -----------------------------------------------
+function convertStandingsToArray(standings) {
   // Convert 
   const sorted = [];
   for (const [key, value] of Object.entries(standings)) {
@@ -61,16 +117,29 @@ function getStandings(matches, option, subOption) {
   return sorted;
 }
 
-const getResults = (score, oponentScore) => {
+function calculateMatch(standings, match, calculateHome, calculateAway, dateLimit) {
+  const { homeTeam, awayTeam, homeScore, awayScore, started, date } = match;
+
+  if (started && !(dateLimit && date > dateLimit)) {
+
+    // The home team
+    if (calculateHome) calculateStandings(standings[homeTeam], homeScore, awayScore)
+
+    // The away team
+    if (calculateAway) calculateStandings(standings[awayTeam], awayScore, homeScore)
+  }
+}
+
+function getResults(score, oponentScore) {
   const results = {
-    points: 0, 
+    points: 0,
     pointsLost: 0,
-    victory: 0, 
+    victory: 0,
     draw: 0,
-    loss: 0, 
-    goalsFor: score, 
+    loss: 0,
+    goalsFor: score,
     goalsAgainst: oponentScore,
-    goalDifference: score - oponentScore 
+    goalDifference: score - oponentScore
   }
 
   if (score > oponentScore) {
@@ -88,8 +157,8 @@ const getResults = (score, oponentScore) => {
 
   return results;
 }
-    
-const calculateStandings = (team, score, oponentScore) => {
+
+function calculateStandings(team, score, oponentScore) {
   const results = getResults(score, oponentScore)
   team.matches += 1
   team.points += results.points
@@ -100,4 +169,15 @@ const calculateStandings = (team, score, oponentScore) => {
   team.goalsFor += results.goalsFor
   team.goalsAgainst += results.goalsAgainst
   team.goalDifference += results.goalDifference
+}
+
+function getMatchesInDescendingOrder(matches) {
+
+  // Flatten the matches
+  const matchesArray = Object.values(matches).flat();
+
+  // Sort by date descending
+  return matchesArray
+    .filter(item => item.started)
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
 }

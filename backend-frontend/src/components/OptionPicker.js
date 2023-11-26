@@ -13,16 +13,47 @@ import Stack from '@mui/material/Stack';
 import { AppContext } from 'src/pages/_app';
 
 const options = [
-  "Atualizada",
-  "Mandante",
-  "Visitante",
-  "Turno",
-  "Returno",
-  "Últimas X",
-  "Até rodada X",
-  "Data específica",
-]
-
+  {
+    key: 1,
+    long: "Atualizada",
+    short: "Geral"
+  },
+  {
+    key: 2,
+    long: "Mandante",
+    short: "Casa"
+  },
+  {
+    key: 3,
+    long: "Visitante",
+    short: "Fora"
+  },
+  {
+    key: 4,
+    long: "Turno",
+    short: "1T"
+  },
+  {
+    key: 5,
+    long: "Returno",
+    short: "2T"
+  },
+  {
+    key: 6,
+    long: "Últimas X",
+    short: "Ult"
+  },
+  {
+    key: 7,
+    long: "Até rodada X",
+    short: "Até"
+  },
+  {
+    key: 8,
+    long: "Data específica",
+    short: "Data"
+  }
+];
 
 export default function OptionPicker(props) {
   const { handleChange, selectedOption, selectedSubOption } = props;
@@ -36,7 +67,7 @@ export default function OptionPicker(props) {
         <Stack
           alignItems="center"
           justify="center"
-          // direction="horizontal"
+        // direction="horizontal"
         >
           <FormControl>
             <FormLabel id="atualizada-sub-formlabel">Ordenar por</FormLabel>
@@ -84,12 +115,12 @@ export default function OptionPicker(props) {
             options.map(opt => {
               return (
                 <ToggleButton
-                  key={opt}
-                  value={opt}
+                  key={opt.key}
+                  value={opt.key}
                   size="small" sx={padding}
                   selected={opt === selectedOption}
                 >
-                  {opt}
+                  {largeScreen.width ? opt.long : opt.short}
                 </ToggleButton>)
             })
           }
@@ -101,5 +132,5 @@ export default function OptionPicker(props) {
 }
 
 OptionPicker.propTypes = {
-//todo
+  //todo
 };

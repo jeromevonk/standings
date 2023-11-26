@@ -2371,10 +2371,10 @@
     {
       "homeTeam": "Fortaleza",
       "awayTeam": "Botafogo",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 2,
+      "awayScore": 2,
       "date": "2023-11-23",
-      "started": false
+      "started": true
     }
   ],
   "30": [
@@ -2453,10 +2453,10 @@
     {
       "homeTeam": "Flamengo",
       "awayTeam": "Bragantino",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 1,
+      "awayScore": 0,
       "date": "2023-11-23",
-      "started": false
+      "started": true
     }
   ],
   "31": [
@@ -2617,10 +2617,10 @@
     {
       "homeTeam": "Fluminense",
       "awayTeam": "São Paulo",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 1,
+      "awayScore": 0,
       "date": "2023-11-22",
-      "started": false
+      "started": true
     }
   ],
   "33": [
@@ -2699,10 +2699,10 @@
     {
       "homeTeam": "Cruzeiro",
       "awayTeam": "Vasco",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 2,
+      "awayScore": 2,
       "date": "2023-11-22",
-      "started": false
+      "started": true
     }
   ],
   "34": [
@@ -2791,26 +2791,26 @@
     {
       "homeTeam": "Corinthians",
       "awayTeam": "Bahia",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 1,
+      "awayScore": 5,
       "date": "2023-11-24",
-      "started": false
+      "started": true
     },
     {
       "homeTeam": "Athletico-PR",
       "awayTeam": "Vasco",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 0,
+      "awayScore": 0,
       "date": "2023-11-25",
-      "started": false
+      "started": true
     },
     {
       "homeTeam": "Fluminense",
       "awayTeam": "Coritiba",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 2,
+      "awayScore": 1,
       "date": "2023-11-25",
-      "started": false
+      "started": true
     },
     {
       "homeTeam": "Botafogo",
@@ -2953,20 +2953,28 @@
   ],
   "37": [
     {
+      "homeTeam": "Corinthians",
+      "awayTeam": "Internacional",
+      "homeScore": null,
+      "awayScore": null,
+      "date": "2023-12-02",
+      "started": false
+    },
+    {
+      "homeTeam": "Atlético-MG",
+      "awayTeam": "São Paulo",
+      "homeScore": null,
+      "awayScore": null,
+      "date": "2023-12-02",
+      "started": false
+    },
+    {
       "homeTeam": "Flamengo",
       "awayTeam": "Cuiabá",
       "homeScore": null,
       "awayScore": null,
       "date": "2023-12-03",
-      "started": null
-    },
-    {
-      "homeTeam": "Botafogo",
-      "awayTeam": "Cruzeiro",
-      "homeScore": null,
-      "awayScore": null,
-      "date": "2023-12-03",
-      "started": null
+      "started": false
     },
     {
       "homeTeam": "Palmeiras",
@@ -2974,55 +2982,7 @@
       "homeScore": null,
       "awayScore": null,
       "date": "2023-12-03",
-      "started": null
-    },
-    {
-      "homeTeam": "Corinthians",
-      "awayTeam": "Internacional",
-      "homeScore": null,
-      "awayScore": null,
-      "date": "2023-12-03",
-      "started": null
-    },
-    {
-      "homeTeam": "Bragantino",
-      "awayTeam": "Coritiba",
-      "homeScore": null,
-      "awayScore": null,
-      "date": "2023-12-03",
-      "started": null
-    },
-    {
-      "homeTeam": "Atlético-MG",
-      "awayTeam": "São Paulo",
-      "homeScore": null,
-      "awayScore": null,
-      "date": "2023-12-03",
-      "started": null
-    },
-    {
-      "homeTeam": "Grêmio",
-      "awayTeam": "Vasco",
-      "homeScore": null,
-      "awayScore": null,
-      "date": "2023-12-03",
-      "started": null
-    },
-    {
-      "homeTeam": "Athletico-PR",
-      "awayTeam": "Santos",
-      "homeScore": null,
-      "awayScore": null,
-      "date": "2023-12-03",
-      "started": null
-    },
-    {
-      "homeTeam": "Fortaleza",
-      "awayTeam": "Goiás",
-      "homeScore": null,
-      "awayScore": null,
-      "date": "2023-12-03",
-      "started": null
+      "started": false
     },
     {
       "homeTeam": "América-MG",
@@ -3030,7 +2990,47 @@
       "homeScore": null,
       "awayScore": null,
       "date": "2023-12-03",
-      "started": null
+      "started": false
+    },
+    {
+      "homeTeam": "Botafogo",
+      "awayTeam": "Cruzeiro",
+      "homeScore": null,
+      "awayScore": null,
+      "date": "2023-12-03",
+      "started": false
+    },
+    {
+      "homeTeam": "Bragantino",
+      "awayTeam": "Coritiba",
+      "homeScore": null,
+      "awayScore": null,
+      "date": "2023-12-03",
+      "started": false
+    },
+    {
+      "homeTeam": "Grêmio",
+      "awayTeam": "Vasco",
+      "homeScore": null,
+      "awayScore": null,
+      "date": "2023-12-03",
+      "started": false
+    },
+    {
+      "homeTeam": "Athletico-PR",
+      "awayTeam": "Santos",
+      "homeScore": null,
+      "awayScore": null,
+      "date": "2023-12-03",
+      "started": false
+    },
+    {
+      "homeTeam": "Fortaleza",
+      "awayTeam": "Goiás",
+      "homeScore": null,
+      "awayScore": null,
+      "date": "2023-12-03",
+      "started": false
     }
   ],
   "38": [
@@ -3040,7 +3040,7 @@
       "homeScore": null,
       "awayScore": null,
       "date": "2023-12-06",
-      "started": null
+      "started": false
     },
     {
       "homeTeam": "Vasco",
@@ -3048,7 +3048,7 @@
       "homeScore": null,
       "awayScore": null,
       "date": "2023-12-06",
-      "started": null
+      "started": false
     },
     {
       "homeTeam": "São Paulo",
@@ -3056,7 +3056,7 @@
       "homeScore": null,
       "awayScore": null,
       "date": "2023-12-06",
-      "started": null
+      "started": false
     },
     {
       "homeTeam": "Santos",
@@ -3064,7 +3064,7 @@
       "homeScore": null,
       "awayScore": null,
       "date": "2023-12-06",
-      "started": null
+      "started": false
     },
     {
       "homeTeam": "Goiás",
@@ -3072,7 +3072,7 @@
       "homeScore": null,
       "awayScore": null,
       "date": "2023-12-06",
-      "started": null
+      "started": false
     },
     {
       "homeTeam": "Cruzeiro",
@@ -3080,7 +3080,7 @@
       "homeScore": null,
       "awayScore": null,
       "date": "2023-12-06",
-      "started": null
+      "started": false
     },
     {
       "homeTeam": "Internacional",
@@ -3088,7 +3088,7 @@
       "homeScore": null,
       "awayScore": null,
       "date": "2023-12-06",
-      "started": null
+      "started": false
     },
     {
       "homeTeam": "Coritiba",
@@ -3096,7 +3096,7 @@
       "homeScore": null,
       "awayScore": null,
       "date": "2023-12-06",
-      "started": null
+      "started": false
     },
     {
       "homeTeam": "Bahia",
@@ -3104,7 +3104,7 @@
       "homeScore": null,
       "awayScore": null,
       "date": "2023-12-06",
-      "started": null
+      "started": false
     },
     {
       "homeTeam": "Cuiabá",
@@ -3112,7 +3112,7 @@
       "homeScore": null,
       "awayScore": null,
       "date": "2023-12-06",
-      "started": null
+      "started": false
     }
   ]
 }

@@ -97,8 +97,30 @@ function iterateByRounds(standings, matches, option, subOption) {
 // Iterate by team
 // -----------------------------------------------
 function iterateByTeam(standings, matches, option, subOption) {
+  // Get matches order by date in descending order
   const sortedMatches = getMatchesInDescendingOrder(matches);
-  // console.log(sortedMatches[0]);
+
+  // Get array of teams
+  const teamNames = Object.keys(standings);
+  
+  // For every team
+  for (const team of teamNames) {
+    let toFind = 5; // TODO
+
+    // Look for last X matches
+    for (let i = 0; i < sortedMatches.length && toFind > 0; i++) {
+      const match = sortedMatches[i];
+      
+      // Did the team play at home, away?
+      if (team === match.homeTeam) {
+        calculateMatch(standings, match, true, false, false);
+        toFind--;
+      } else if(team === match.awayTeam) {
+        calculateMatch(standings, match, false, true, false);
+        toFind--;
+      }
+    }
+  }
 }
 
 // -----------------------------------------------
@@ -172,7 +194,6 @@ function calculateStandings(team, score, oponentScore) {
 }
 
 function getMatchesInDescendingOrder(matches) {
-
   // Flatten the matches
   const matchesArray = Object.values(matches).flat();
 

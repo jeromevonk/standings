@@ -47,13 +47,13 @@ function StandingsTableHead(props) {
       disablePadding: false,
       label: 'P',
     },
-     {
-       id: 'pointsLost',
-       numeric: false,
-       disablePadding: false,
-       label: 'PP',
-       //onlyLargeScreen: true
-     },
+    {
+      id: 'pointsLost',
+      numeric: false,
+      disablePadding: false,
+      label: 'PP',
+      onlyLargeScreen: true
+    },
     {
       id: 'matches',
       numeric: false,
@@ -83,18 +83,27 @@ function StandingsTableHead(props) {
       numeric: false,
       disablePadding: false,
       label: 'GP',
+      onlyLargeScreen: true
     },
     {
       id: 'goalsAgainst',
       numeric: false,
       disablePadding: false,
       label: 'GC',
+      onlyLargeScreen: true
     },
     {
       id: 'goalDifference',
       numeric: false,
       disablePadding: false,
       label: 'SG',
+    },
+    {
+      id: 'percent',
+      numeric: false,
+      disablePadding: false,
+      label: '%',
+      onlyLargeScreen: true
     },
   ];
 
@@ -110,6 +119,7 @@ function StandingsTableHead(props) {
               align={headCell.numeric ? 'right' : 'center'}
               padding={headCell.disablePadding ? 'none' : 'normal'}
               sortDirection={orderBy === headCell.id ? order : false}
+              // sx={{ width: '10px' }} TODO
             >
               <TableSortLabel
                 active={orderBy === headCell.id}
@@ -235,11 +245,14 @@ export default function StandingsTable(props) {
                       {
                         // Points
                       }
-                        <TableCell align="center">{row.points}</TableCell>
+                      <TableCell align="center">{row.points}</TableCell>
                       {
-                        // Points lost
+                        // Points lost - only if largeScreen
                       }
-                      <TableCell align="center">{row.pointsLost}</TableCell>
+                      {
+                        largeScreen.width &&
+                        <TableCell align="center">{row.pointsLost}</TableCell>
+                      }
                       {
                         // Games
                       }
@@ -257,17 +270,30 @@ export default function StandingsTable(props) {
                       }
                       <TableCell align="center">{row.losses}</TableCell>
                       {
-                        // Goals for
+                        // Goals for - only if largeScreen
                       }
-                      <TableCell align="center">{row.goalsFor}</TableCell>
                       {
-                        // Goals against
+                        largeScreen.width &&
+                        <TableCell align="center">{row.goalsFor}</TableCell>
                       }
-                      <TableCell align="center">{row.goalsAgainst}</TableCell>
+                      {
+                        // Goals against - only if largeScreen
+                      }
+                      {
+                        largeScreen.width &&
+                        <TableCell align="center">{row.goalsAgainst}</TableCell>
+                      }
                       {
                         // Goal difference
                       }
                       <TableCell align="center">{row.goalDifference}</TableCell>
+                      {
+                        // Percent - only if largeScreen
+                      }
+                      {
+                        largeScreen.width &&
+                        <TableCell align="center">{Math.round((100 * row.points) / (row.matches * 3) * 10) / 10}</TableCell>
+                      }
                     </StyledTableRow>
                   );
                 })}

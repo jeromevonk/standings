@@ -17,8 +17,8 @@ function Index(props) {
 
   const [matches, setMatches] = React.useState({});
   const [standings, setStandings] = React.useState([]);
-  const [selectedOption, setSelectedOption] = React.useState("Atualizada");
-  const [selectedSubOption, setSelectedSubOption] = React.useState("Atualizada");
+  const [selectedOption, setSelectedOption] = React.useState(1);
+  const [selectedSubOption, setSelectedSubOption] = React.useState(1);
 
   const handleChange = (name, value) => {
     if (name === 'option') {
@@ -58,8 +58,6 @@ function Index(props) {
     setStandings(standingsService.getStandings(matches, selectedOption, selectedSubOption))
     setIsLoading(false);
   }, [matches, selectedOption, selectedSubOption]);
-
-  // console.log(standings);
 
   return (
     <Container

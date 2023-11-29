@@ -76,7 +76,7 @@ function iterateByRounds(standings, matches, option, subOption) {
       break;
 
     case 7:
-      details.endRound = 26 // TODO
+      details.endRound = subOption;
       break;
 
     case 8:
@@ -96,7 +96,7 @@ function iterateByRounds(standings, matches, option, subOption) {
 // -----------------------------------------------
 // Iterate by team
 // -----------------------------------------------
-function iterateByTeam(standings, matches, option, subOption) {
+function iterateByTeam(standings, matches, _option, subOption) {
   // Get matches order by date in descending order
   const sortedMatches = getMatchesInDescendingOrder(matches);
 
@@ -105,7 +105,7 @@ function iterateByTeam(standings, matches, option, subOption) {
   
   // For every team
   for (const team of teamNames) {
-    let toFind = 5; // TODO
+    let toFind = subOption;
 
     // Look for last X matches
     for (let i = 0; i < sortedMatches.length && toFind > 0; i++) {

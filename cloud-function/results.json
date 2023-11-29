@@ -2863,10 +2863,10 @@
     {
       "homeTeam": "Goiás",
       "awayTeam": "Cruzeiro",
-      "homeScore": null,
-      "awayScore": null,
+      "homeScore": 0,
+      "awayScore": 1,
       "date": "2023-11-27",
-      "started": false
+      "started": true
     }
   ],
   "36": [

@@ -33,14 +33,12 @@ function sortTitleAlphabetically(a, b) {
 }
 
 function getComparator(order, orderBy) {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
+  return (a, b) => customComparator(a, b, order, orderBy)
 }
 
 const textHeadCells = ['team'];
 
-function descendingComparator(a, b, orderBy) {
+function customComparator(a, b, order, orderBy) {
   let x, y;
 
   if (textHeadCells.includes(orderBy)) {
@@ -52,16 +50,51 @@ function descendingComparator(a, b, orderBy) {
     y = Number(b[orderBy]);
   }
 
-  // console.log(orderBy);
-  // TODO if points, ordenar por pontos, vitorias, saldo de gols, etc
+  // If orderBy points, special case
+  if (["points", "pointsLost"].includes(orderBy) ) {
+    return sortByPoints(a, b, order, orderBy);
+  }
 
+  const multiplier = order === 'desc' ? 1 : -1;
+  
   if (y < x) {
-    return -1;
+    return -1 * multiplier;
   }
 
   if (y > x) {
-    return 1;
+    return 1 * multiplier;
   }
 
   return 0;
 }
+
+function sortByPoints(a, b, order, orderBy) {
+
+  let orderMultiplier = order === 'desc' ? 1 : -1;
+  let pointsLostMultiplier = 1;
+  if (orderBy === "pointsLost") {
+    pointsLostMultiplier = -1;
+  }
+  
+  // First, compare points
+  if (Number(a[orderBy]) > Number(b[orderBy])) {
+    return -1 * orderMultiplier;
+  } else if (Number(a[orderBy]) < Number(b[orderBy])) {
+    return 1 * orderMultiplier;
+  } else if (Number(a.victories) > Number(b.victories)) {
+    return -1 * orderMultiplier * pointsLostMultiplier;
+  } else if (Number(a.victories) < Number(b.victories)) {
+    return 1 * orderMultiplier * pointsLostMultiplier;
+  } else if (Number(a.goalDifference) > Number(b.goalDifference)) {
+    return -1 * orderMultiplier * pointsLostMultiplier;
+  } else if (Number(a.goalDifference) < Number(b.goalDifference)) {
+    return 1 * orderMultiplier * pointsLostMultiplier;
+  } else if (Number(a.goalsFor) > Number(b.goalsFor)) {
+    return -1 * orderMultiplier * pointsLostMultiplier;
+  } else if (Number(a.goalsFor) < Number(b.goalsFor)) {
+    return 1 * orderMultiplier * pointsLostMultiplier;
+  } else {
+    return 0;
+  }
+}
+

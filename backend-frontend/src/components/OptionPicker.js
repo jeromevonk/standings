@@ -19,7 +19,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AppContext } from 'src/pages/_app';
 
 const roundsArray = Array.from({ length: 38 }, (_, index) => index + 1);
-console.log(roundsArray);
 
 const options = [
   {
@@ -71,34 +70,7 @@ export default function OptionPicker(props) {
   const largeScreen = context?.largeScreen;
 
   const getSubOption = (selectedOption, selectedSubOption) => {
-    if (selectedOption === 1) {
-      return (
-        <Stack
-          alignItems="center"
-          justify="center"
-        // direction="horizontal"
-        >
-          <FormControl>
-            <FormLabel id="atualizada-sub-formlabel">Ordenar por</FormLabel>
-            <RadioGroup
-              row
-              name="atualizadaSubOption"
-              onChange={
-                (event) => {
-                  // Set state
-                  const { value } = event.target;
-                  handleChange('subOption', value);
-                }
-              }
-            >
-              <FormControlLabel value="pontosGanhos" control={<Radio checked={selectedSubOption === 'pontosGanhos'} />} label="pontosGanhos" />
-              <FormControlLabel value="pontosPerdidos" control={<Radio checked={selectedSubOption === 'pontosPerdidos'} />} label="pontosPerdidos" />
-            </RadioGroup>
-          </FormControl>
-        </Stack>
-
-      )
-    } else if (selectedOption === 6) {
+    if (selectedOption === 6) {
       return (
         <Box sx={{ my: 2 }}>
           <Stack direction="row" spacing={10} alignItems="center" justifyContent="center">

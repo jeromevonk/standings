@@ -33,8 +33,8 @@ function Index(props) {
       setSelectedOption(value)
 
       // Default values for subOptions
-      if (value === 6) setSelectedSubOption(1)
-      if (value === 7) setSelectedSubOption(1)
+      if (value === 6) setSelectedSubOption(10)
+      if (value === 7) setSelectedSubOption(30)
       if (value === 8) setSelectedSubOption(new Date(2023, 11, 5))
     } else {
       setSelectedSubOption(value)

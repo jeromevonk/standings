@@ -1,3 +1,5 @@
+import { format } from 'date-fns'; 
+
 export const standingsService = {
   getStandings,
 };
@@ -75,12 +77,16 @@ function iterateByRounds(standings, matches, option, subOption) {
       details.endRound = 38
       break;
 
+    case 6:
+      // N/A here
+      break;
+
     case 7:
       details.endRound = subOption;
       break;
 
     case 8:
-      details.dateLimit = "2023-05-05" // TODO
+      details.dateLimit = format(subOption, 'yyyy-MM-dd'); 
       break;
   }
 
@@ -142,6 +148,11 @@ function convertStandingsToArray(standings) {
 function calculateMatch(standings, match, calculateHome, calculateAway, dateLimit) {
   const { homeTeam, awayTeam, homeScore, awayScore, started, date } = match;
 
+  // If the game has started 
+  // AND
+  // if dateLimit defined, it's greather than or equal the date
+  // THEN
+  // consider the match
   if (started && !(dateLimit && date > dateLimit)) {
 
     // The home team

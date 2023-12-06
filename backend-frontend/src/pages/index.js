@@ -31,6 +31,9 @@ function Index(props) {
   const handleChange = (name, value) => {
     if (name === 'option') {
       setSelectedOption(value)
+
+      // If date, use default
+      if (value === 8) setSelectedSubOption(new Date(2023, 11, 5))
     } else {
       setSelectedSubOption(value)
     }

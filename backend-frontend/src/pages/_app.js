@@ -7,7 +7,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
 import theme from '../theme';
 import createEmotionCache from '../createEmotionCache';
-import { CustomAlert } from 'src/components/CustomAlert';
 
 import ResponsiveAppBar from 'src/components/ResponsiveAppBar';
 
@@ -80,7 +79,6 @@ export default function MyApp(props) {
         }}>
           <div>
             <ResponsiveAppBar />
-            <CustomAlert />
             <Component {...pageProps} />
           </div>
         </AppContext.Provider>

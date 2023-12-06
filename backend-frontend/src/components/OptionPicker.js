@@ -5,15 +5,14 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
 import Stack from '@mui/material/Stack';
 import MenuItem from '@mui/material/MenuItem';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AppContext } from 'src/pages/_app';
@@ -74,26 +73,26 @@ export default function OptionPicker(props) {
       return (
         <Box sx={{ my: 2 }}>
           <Stack direction="row" spacing={10} alignItems="center" justifyContent="center">
-          <FormControl>
-            <InputLabel id="ultimas-select-label">Últimas</InputLabel>
-            <Select
-              labelId="ultimas-category-label"
-              id="ultimas-category"
-              label="ultimas"
-              value={selectedSubOption}
-              sx={{ minWidth: 120 }}
-              onChange={(event => {
-                const { value } = event.target;
-                handleChange('subOption', value);
-              })}
-            >
-              {
-                roundsArray.map((num) => (
-                  <MenuItem key={`ultimas${num}`} value={num}>{num}</MenuItem>
-                ))
-              }
-            </Select>
-          </FormControl>
+            <FormControl>
+              <InputLabel id="ultimas-select-label">Últimas</InputLabel>
+              <Select
+                labelId="ultimas-category-label"
+                id="ultimas-category"
+                label="ultimas"
+                value={selectedSubOption}
+                sx={{ minWidth: 120 }}
+                onChange={(event => {
+                  const { value } = event.target;
+                  handleChange('subOption', value);
+                })}
+              >
+                {
+                  roundsArray.map((num) => (
+                    <MenuItem key={`ultimas${num}`} value={num}>{num}</MenuItem>
+                  ))
+                }
+              </Select>
+            </FormControl>
           </Stack>
         </Box>
       )
@@ -101,34 +100,49 @@ export default function OptionPicker(props) {
       return (
         <Box sx={{ my: 2 }}>
           <Stack direction="row" spacing={10} alignItems="center" justifyContent="center">
-          <FormControl>
-            <InputLabel id="ate-select-label">Até</InputLabel>
-            <Select
-              labelId="ate-category-label"
-              id="ate-category"
-              label="ate"
-              value={selectedSubOption}
-              sx={{ minWidth: 120 }}
-              onChange={(event => {
-                const { value } = event.target;
-                handleChange('subOption', value);
-              })}
-            >
-              {
-                roundsArray.map((num) => (
-                  <MenuItem key={`ate${num}`} value={num}>{num}</MenuItem>
-                ))
-              }
-            </Select>
-          </FormControl>
+            <FormControl>
+              <InputLabel id="ate-select-label">Até</InputLabel>
+              <Select
+                labelId="ate-category-label"
+                id="ate-category"
+                label="ate"
+                value={selectedSubOption}
+                sx={{ minWidth: 120 }}
+                onChange={(event => {
+                  const { value } = event.target;
+                  handleChange('subOption', value);
+                })}
+              >
+                {
+                  roundsArray.map((num) => (
+                    <MenuItem key={`ate${num}`} value={num}>{num}</MenuItem>
+                  ))
+                }
+              </Select>
+            </FormControl>
           </Stack>
         </Box>
       )
     } else if (selectedOption === 8) {
       return (
-        <div>
-
-        </div>)
+        <Box sx={{ my: 2 }}>
+          <Stack direction="row" spacing={10} alignItems="center" justifyContent="center">
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DatePicker
+                label="Classificação no dia"
+                sx={{ width: 1 }}
+                value={selectedSubOption}
+                minDate={new Date(2023,3, 15)}
+                maxDate={new Date(2023, 11, 6)}
+                onChange={(value) => {
+                  handleChange('subOption', value);
+                }}
+                renderInput={(params) => <TextField {...params} onKeyDown={e => e.preventDefault()} size='small' />}
+              />
+            </LocalizationProvider>
+          </Stack>
+        </Box>
+      )
     } else {
       return (<div></div>)
     }
